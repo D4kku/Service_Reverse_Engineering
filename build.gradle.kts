@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    application
 }
 
 group = "de.uulm.in.vs.grn.p2a"
@@ -12,6 +13,9 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+}
+application {
+    mainClass = "de.uulm.in.vs.grn.p4a.ReversedService"
 }
 
 tasks.test {
