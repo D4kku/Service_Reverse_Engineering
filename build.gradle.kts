@@ -15,7 +15,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 application {
-    mainClass = "de.uulm.in.vs.grn.p4a.ReversedService"
+    mainClass = "de.uulm.in.vs.grn.p4a.ReversedServiceServer"
 }
 
 tasks.test {
