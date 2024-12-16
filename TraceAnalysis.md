@@ -25,12 +25,10 @@ Die antworten Folgen einem Ähnlichen schema wo oben:
 > `RESP CODE` `RESP MSG` `\n`
 
 Wobei der RESP CODE immer angibt ober der befehl successfull war oder einen Error geworfen hat.
-In der RESP MSG wird dann genauer Spezifiert was schief ging und warum.
-Allgemein Folgt es dieser Convetion:
+In der RESP MSG wird dann genauer Spezifziert was schiefging und warum.
+Allgemein Folgt es dieser Convention:
 
-TODO: Diese tabelle richting ausfüllen bzw umstruckturieren weil das ist komisch
-
-| RESP CODE | RESP MSG                      | Description                              |
-|-----------|-------------------------------|------------------------------------------|
-| ERR:      | Unkown Key! & Unkown Command! |                                          |
-| RES:      | Bye or Value or OK            | Responds with OK for valid put requests. |
+| RESP CODE  | RESP MSG                                          | Description                                                    |
+|------------|---------------------------------------------------|----------------------------------------------------------------|
+| `ERR:`     | `Unknown Key!` or `Unknown Command!`              | "Response code of the server if the request failed in some way |
+| `RES:`     | `Bye` for EXIT or `Value` for GET or `OK` for PUT | Response code for a valid request with the specified Msg .     |

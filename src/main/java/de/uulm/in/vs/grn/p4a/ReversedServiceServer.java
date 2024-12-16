@@ -7,16 +7,22 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ReversedServiceServer {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         int port = 3211;
-        ServerSocket server = new ServerSocket(port);
+        try (ServerSocket server = new ServerSocket(port)) { //Server hat socket auf dem port "port"
 
-        ExecutorService threadPool = Executors.newCachedThreadPool();
+            //durch den Executor kann man den als thread implementierten service gleichzeitig
+            // mehrere user bedienen. Ist zwar nicht unbedingt gefragt worden, war aber zum Testen angenehmer und 3 zeilen code
+            try (ExecutorService threadPool = Executors.newCachedThreadPool()) {
 
-        while(true){
-            Socket s = server.accept();
-            threadPool.execute(new ReversedServiceHandler(s));
+                //this is the Server loop which only continues when there is a new connection ergo a new user who wants this weird service
+                while (true) {
+                    Socket s = server.accept();
+                    threadPool.execute(new ReversedServiceHandler(s)); //runs the service for the new connection in a separate thread
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-
     }
 }
